@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Leaderboard - Media Literacy Quiz</title>
+  <link rel="stylesheet" href="../style.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    
+    #leaderboard-list {
+      list-style: none;
+      padding: 0;
+      max-width: 500px;
+      margin: 20px auto;
+    }
+
+    #leaderboard-list li {
+      background: #fff;
+      margin: 12px 0;
+      padding: 15px 20px;
+      border-radius: 10px;
+      box-shadow: 0px 4px 10px rgba(0,0,0,0.08);
+      font-size: 18px;
+      font-weight: 500;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: transform 0.2s ease;
+    }
+
+    #leaderboard-list li:hover {
+      transform: scale(1.02);
+    }
+
+    
+    .gold { color: #f1c40f; }
+    .silver { color: #bdc3c7; }
+    .bronze { color: #e67e22; }
+
+
+    .btn {
+      margin: 10px;
+      padding: 12px 25px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      color: white;
+    }
+
+    #back-btn {
+      background: #3498db;
+    }
+    #back-btn:hover {
+      background: #2980b9;
+    }
+
+    #play-again-btn {
+      background: #27ae60;
+    }
+    #play-again-btn:hover {
+      background: #219150;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo"><i class="fa-solid fa-newspaper"></i> Media Literacy</div>
+    <ul class="nav-links">
+      <li><a href="../index.html"><i class="fa-solid fa-house"></i> Home</a></li>
+      <li><a href="about.html"><i class="fa-solid fa-circle-info"></i> About</a></li>
+      <li><a href="leaderboard.html" class="active"><i class="fa-solid fa-trophy"></i> Leaderboard</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <h1>🏆 Leaderboard</h1>
+    <ol id="leaderboard-list"></ol>
+
+  
+    <div>
+      <a href="../index.html">
+        <button class="btn" id="back-btn"><i class="fa-solid fa-arrow-left"></i> Back to Quiz</button>
+      </a>
+      <button class="btn" id="play-again-btn"><i class="fa-solid fa-rotate-right"></i> Play Again</button>
+    </div>
+  </div>
+
+  <!-- Script for Leaderboard -->
+  <script>
+    // Load leaderboard data from localStorage
+    let leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || [];
+
+    // Sort by highest score
+    leaderboard.sort((a, b) => b.score - a.score);
+
+    // Display leaderboard
+    let list = document.getElementById("leaderboard-list");
+    if (leaderboard.length === 0) {
+      let empty = document.createElement("p");
+      empty.innerText = "No scores yet. Play the quiz to appear here!";
+      list.appendChild(empty);
+    } else {
+      leaderboard.forEach((player, index) => {
+        let item = document.createElement("li");
+
+        // Add medals for top 3
+        let medal = "";
+        if (index === 0) medal = '<i class="fa-solid fa-medal gold"></i> ';
+        else if (index === 1) medal = '<i class="fa-solid fa-medal silver"></i> ';
+        else if (index === 2) medal = '<i class="fa-solid fa-medal bronze"></i> ';
+
+        item.innerHTML = `${medal}${player.name} <span>${player.score} pts</span>`;
+        list.appendChild(item);
+      });
+    }
+
+    // Reset quiz and play again
+    document.getElementById("play-again-btn").addEventListener("click", () => {
+      localStorage.removeItem("currentScore");   // reset score
+      localStorage.removeItem("currentQuestion"); // reset question index
+      window.location.href = "../index.html";    // restart quiz
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+[
+  {
+    "question": "Chocolate cures COVID-19",
+    "answer": "fake",
+    "explanation": "This is false. No scientific research supports chocolate as a cure for COVID-19."
+  },
+  {
+    "question": "NASA confirms water on the Moon",
+    "answer": "real",
+    "explanation": "True. NASA officially confirmed the presence of water molecules on the Moon in 2020."
+  },
+  {
+    "question": "Aliens secretly run Facebook",
+    "answer": "fake",
+    "explanation": "This is a conspiracy theory with no evidence or credible sources."
+  },
+  {
+    "question": "Teen builds a robot from recycled parts",
+    "answer": "real",
+    "explanation": "True. A real story covered in local and international media about innovation by young inventors."
+  },
+  {
+    "question": "Drinking bleach can cure diseases",
+    "answer": "fake",
+    "explanation": "Dangerous misinformation. Bleach is toxic and harmful if consumed."
+  },
+  {
+    "question": "World’s largest solar farm built in India",
+    "answer": "real",
+    "explanation": "Verified news. India built one of the world's largest solar farms to boost renewable energy."
+  }
+]
