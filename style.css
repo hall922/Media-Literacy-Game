@@ -1,0 +1,146 @@
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background: #f4f8fb;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar {
+  background-color: rgb(48, 24, 72); /* darker purple */
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between; /* logo left, nav right */
+  align-items: center;
+}
+
+.logo {
+  color: #f5f0fa;
+  font-size: 20px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-links {
+  display: flex;
+  flex: 1; /* take available space */
+  justify-content: flex-end; /* push links to right side */
+  gap: 40px; /* evenly spaced apart */
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+}
+
+nav a {
+  color: white; /* Set link color to white */
+  text-decoration: none;
+}
+
+nav a:hover {
+  color: rgb(200, 170, 230);
+  text-decoration: none;
+}
+
+nav ul li {
+  display: inline;
+  margin: 15px;
+}
+
+nav ul li a.active {
+  background-color: white;
+  color: rgb(200, 170, 230);
+}
+
+#quiz-box {
+  background: #fff;
+  padding: 25px;
+  margin: 40px auto;
+  max-width: 600px;
+  border-radius: 12px;
+  box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
+}
+#quiz-box h2 {
+  font-size: 18px;
+  color: #34495e;
+  margin-bottom: 15px;
+}
+
+.headline {
+  font-size: 20px;
+  font-weight: bold;
+  color: #2c3e50;
+  margin: 20px 0;
+  font-style: italic;
+}
+
+
+.buttons button {
+  display: block;
+  width: 100%;
+  margin: 12px 0;
+  padding: 15px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.buttons button:first-child {
+  background: #27ae60;
+  color: white;
+}
+.buttons button:first-child:hover {
+  background: #219150;
+}
+
+.buttons button:last-child {
+  background: #e74c3c;
+  color: white;
+}
+.buttons button:last-child:hover {
+  background: #c0392b;
+}
+
+
+#feedback {
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 8px;
+  background: #f8f9fa;
+  border-left: 4px solid #f1c40f;
+  text-align: left;
+  font-size: 15px;
+  color: #2c3e50;
+}
+
+#feedback strong {
+  font-weight: bold;
+}
+
+#feedback small {
+  display: block;
+  margin-top: 8px;
+  color: #7f8c8d;
+  font-size: 13px;
+}
+
+
+#next-btn {
+  display: none;
+  margin-top: 20px;
+  padding: 12px 25px;
+  font-size: 18px;
+  background: #3498db;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+#next-btn:hover {
+  background: #2980b9;
+}

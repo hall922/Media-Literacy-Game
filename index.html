@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Media Literacy Quiz</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body>
+ 
+  <nav class="navbar">
+    <div class="logo"><i class="fa-solid fa-newspaper"></i> Media Literacy</div>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active"><i class="fa-solid fa-house"></i> Home</a></li>
+      <li><a href="pages/about.html"><i class="fa-solid fa-circle-info"></i> About</a></li>
+      <li><a href="./pages/leaderboard.html"><i class="fa-solid fa-trophy"></i> Leaderboard</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <div id="quiz-box">
+      <h2>Is this headline reliable?</h2>
+
+
+
+      
+      <div class="buttons">
+        <button onclick="checkAnswer('real')">✔️ Reliable</button>
+        <button onclick="checkAnswer('fake')">✖️ Fake News</button>
+      </div>
+
+      <div id="feedback"></div>
+
+     
+      <p id="score">Score: 0</p>
+    </div>
+
+    <button id="next-btn" onclick="nextQuestion()">Next Question</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
