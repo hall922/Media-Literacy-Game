@@ -9,14 +9,20 @@ window.onload = () => {
   playerName = prompt("Enter your name:") || "Player";
 };
 
-// Load questions
-fetch("questions.json")
-  .then(res => res.json())
+fetch("data/questions.json")
+  .then(res => {
+    if (!res.ok) {
+      throw new Error("HTTP error " + res.status);
+    }
+    return res.json();
+  })
   .then(data => {
+    console.log("Questions loaded:", data);
     questions = data;
     showQuestion();
-  });
-   
+  })
+  .catch(err => console.error("Error loading questions:", err));
+
 function showQuestion() {
   document.getElementById("feedback").innerText = "";
   document.getElementById("next-btn").style.display = "none";
