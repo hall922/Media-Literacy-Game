@@ -25,25 +25,22 @@
 
   <div class="container">
     <div id="quiz-box">
-      <h2>Is this headline reliable?</h2>
+      <h2 id="question">Loading question...</h2>
 
-<!-- Mascot / Image -->
-      <img src="images/home.jpg" alt="Detective Pickachu!" style="width:100px; margin: 15px auto; display:block;">
+      <!-- Mascot / Image -->
+      <img src="images/home.jpg" alt="Detective Pikachu!" style="width:100px; margin: 15px auto; display:block;">
 
-
-      
       <div class="buttons">
         <button onclick="checkAnswer('real')">✔️ Reliable</button>
         <button onclick="checkAnswer('fake')">✖️ Fake News</button>
       </div>
 
       <div id="feedback"></div>
-
-     
       <p id="score">Score: 0</p>
-    </div>
 
-    <button id="next-btn" onclick="nextQuestion()">Next Question</button>
+      <!-- Hidden Next Button -->
+      <button id="next-btn" onclick="nextQuestion()" style="display:none; margin-top: 15px;">Next Question</button>
+    </div>
   </div>
 
   <script src="script.js"></script>

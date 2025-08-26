@@ -47,7 +47,6 @@ function showQuestion() {
     saveToLeaderboard();
   }
 }
-
 function checkAnswer(answer) {
   // Prevent answering multiple times
   if (answered) return;
@@ -66,14 +65,19 @@ function checkAnswer(answer) {
   }
 
   document.getElementById("score").innerText = "Score: " + score;
-  document.getElementById("next-btn").style.display = "inline-block";
 
   // Disable buttons after answering
   let buttons = document.querySelectorAll(".buttons button");
   buttons.forEach(btn => {
     btn.disabled = true;
-    btn.style.opacity = "0.6"; // faded look to show they're inactive
+    btn.style.opacity = "0.6";
   });
+
+  // ⏳ Automatically go to next question after 1.5s
+  setTimeout(() => {
+    currentQuestion++;
+    showQuestion();
+  }, 1500);
 }
 
 function nextQuestion() {
