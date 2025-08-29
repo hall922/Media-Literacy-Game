@@ -1,116 +1,95 @@
+// Load questions from JSON file
 let questions = [];
-let currentQuestion = 0;
+let currentIndex = 0;
 let score = 0;
-let playerName = "";
-let answered = false; // Track if the question was already answered
 
-// Ask for player name
-window.onload = () => {
-  playerName = prompt("Enter your name:") || "Player";
-};
+// DOM elements
+const questionEl = document.getElementById("question");
+const feedbackEl = document.getElementById("feedback");
+const progressBar = document.getElementById("progress-bar");
+const btnReal = document.getElementById("btn-real");
+const btnFake = document.getElementById("btn-fake");
+const nextBtn = document.getElementById("next-btn");
+const scoreEl = document.getElementById("score");
 
-// Fetch questions
-fetch("data/questions.json")
-  .then(res => {
-    if (!res.ok) {
-      throw new Error("HTTP error " + res.status);
-    }
-    return res.json();
-  })
+// Fetch questions.json dynamically
+fetch('data/questions.json')
+  .then(res => res.json())
   .then(data => {
-    console.log("Questions loaded:", data);
     questions = data;
-    showQuestion();
+    loadQuestion();
   })
-  .catch(err => console.error("Error loading questions:", err));
-
-function showQuestion() {
-  document.getElementById("feedback").innerText = "";
-  document.getElementById("next-btn").style.display = "none";
-  
-  answered = false;
-
-  // Re-enable buttons
-  let buttons = document.querySelectorAll(".buttons button");
-  buttons.forEach(btn => {
-    btn.disabled = false;
-    btn.style.opacity = "1";
+  .catch(err => {
+    console.error("Failed to load questions:", err);
+    questionEl.textContent = "Failed to load quiz questions.";
   });
 
-  if (currentQuestion < questions.length) {
-    document.getElementById("question").innerText = questions[currentQuestion].question;
-    updateProgressBar(); // ✅ update on each question
-  } else {
-    document.getElementById("question").innerText = "🎉 Quiz Finished!";
-    document.getElementById("feedback").innerText = `Your final score is ${score}`;
-    document.querySelector(".buttons").style.display = "none";
-    saveToLeaderboard();
+// Load a question
+function loadQuestion() {
+  if (currentIndex >= questions.length) {
+    endQuiz();
+    return;
   }
+
+  const q = questions[currentIndex];
+  questionEl.textContent = q.question;
+  feedbackEl.style.display = "none";
+  btnReal.disabled = false;
+  btnFake.disabled = false;
+  nextBtn.hidden = true;
+
+  // Update progress
+  const progressPercent = (currentIndex / questions.length) * 100;
+  progressBar.style.width = progressPercent + "%";
+  progressBar.setAttribute("aria-valuenow", progressPercent);
+  scoreEl.textContent = `Score: ${score}`;
 }
 
-function checkAnswer(answer) {
-  if (answered) return;
-  answered = true;
+// Check answer
+function checkAnswer(selected) {
+  const q = questions[currentIndex];
+  const correct = selected === q.answer;
 
-  let correct = questions[currentQuestion].answer;
-  let feedback = document.getElementById("feedback");
-
-  if (answer === correct) {
-    score++;
-    feedback.innerText = "✅ Correct! " + questions[currentQuestion].explanation;
-    feedback.style.color = "green";
+  // Update score and show feedback
+  if (correct) {
+    score += 1;
+    feedbackEl.className = "correct";
+    feedbackEl.innerHTML = `<strong>Correct!</strong> ${q.explanation}`;
   } else {
-    feedback.innerText = "❌ Wrong! " + questions[currentQuestion].explanation;
-    feedback.style.color = "red";
+    feedbackEl.className = "incorrect";
+    feedbackEl.innerHTML = `<strong>Wrong!</strong> ${q.explanation}`;
   }
 
-  document.getElementById("score").innerText = "Score: " + score;
+  feedbackEl.style.display = "block";
+  btnReal.disabled = true;
+  btnFake.disabled = true;
+  nextBtn.hidden = false;
 
-  // Disable buttons
-  let buttons = document.querySelectorAll(".buttons button");
-  buttons.forEach(btn => {
-    btn.disabled = true;
-    btn.style.opacity = "0.6";
-  });
+  scoreEl.textContent = `Score: ${score}`;
 
-  // ⏳ Move to next question automatically
+  // Auto-advance after 2 seconds
   setTimeout(() => {
-    currentQuestion++;
-    showQuestion();
-  }, 1500);
+    if (currentIndex < questions.length) {
+      nextQuestion();
+    }
+  }, 2000);
 }
 
+// Go to next question
 function nextQuestion() {
-  currentQuestion++;
-  showQuestion();
+  currentIndex++;
+  loadQuestion();
 }
 
-// ✅ Progress bar function
-function updateProgressBar() {
-  const progress = ((currentQuestion) / questions.length) * 100;
-  const progressBar = document.getElementById("progress-bar");
+// End of quiz
+function endQuiz() {
+  questionEl.textContent = "🎉 Quiz Finished!";
+  feedbackEl.className = "correct";
+  feedbackEl.innerHTML = `Your final score is ${score}/${questions.length}. Check out the <a href="pages/leaderboard.html">Leaderboard</a>!`;
+  feedbackEl.style.display = "block";
 
-  progressBar.style.width = progress + "%";
-
-  // Change color depending on progress
-  if (progress < 50) {
-    progressBar.style.backgroundColor = "#4caf50"; // green
-  } else if (progress < 80) {
-    progressBar.style.backgroundColor = "#ff9800"; // orange
-  } else {
-    progressBar.style.backgroundColor = "#f44336"; // red
-  }
-}
-
-function saveToLeaderboard() {
-  let leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || [];
-  leaderboard.push({ name: playerName, score: score });
-
-  leaderboard.sort((a, b) => b.score - a.score);
-  leaderboard = leaderboard.slice(0, 10);
-
-  localStorage.setItem("leaderboard", JSON.stringify(leaderboard));
-
-  let feedback = document.getElementById("feedback");
-  feedback.innerHTML += `<br><br><a href="pages/leaderboard.html"><button>View Leaderboard</button></a>`;
+  // Hide answer buttons and next button
+  btnReal.style.display = "none";
+  btnFake.style.display = "none";
+  nextBtn.style.display = "none";
 }
