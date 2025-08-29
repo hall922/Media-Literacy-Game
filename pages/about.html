@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 </head>
 <body>
- 
+  <!-- Navbar -->
   <nav class="navbar">
     <div class="logo"><i class="fa-solid fa-newspaper"></i> Media Literacy</div>
     <ul class="nav-links">
@@ -18,36 +18,112 @@
     </ul>
   </nav>
 
-  <main class="about-section">
+  <!-- Hero Section -->
+  <section class="hero-about">
     <h1>About This Project</h1>
-    <p>
-      The <strong>Media Literacy Quiz</strong> was created for the <em>UNESCO Hackathon</em> 
-      to help raise awareness about misinformation, fake news, and how to identify 
-      trustworthy sources.
-    </p>
-    <p>
-      Our goal is to empower people, especially students and young audiences,
-      to think critically about the information they consume online.
-    </p>
+    <p>Building awareness against fake news, one quiz at a time!</p>
+  </section>
 
-    <h2>What You’ll Learn</h2>
-    <ul>
-      <li><i class="fa-solid fa-check-circle"></i> How to recognize fake news headlines</li>
-      <li><i class="fa-solid fa-check-circle"></i> Spotting bias in articles</li>
-      <li><i class="fa-solid fa-check-circle"></i> Understanding reliable sources</li>
-      <li><i class="fa-solid fa-check-circle"></i> Practicing safe online sharing</li>
-    </ul>
+  <!-- About Content -->
+  <main class="about-container">
+    <!-- Mission -->
+    <section class="about-mission card">
+      <i class="fa-solid fa-bullseye about-icon"></i>
+      <h2>Our Mission</h2>
+      <p>
+        The <strong>Media Literacy Quiz</strong> was created during the <em>UNESCO Hackathon</em> 
+        to help students and young audiences recognize misinformation, question online sources,
+        and develop critical digital skills in a fun and interactive way.
+      </p>
+    </section>
 
-    <h2>Team</h2>
-    <p>
-      This project was built by beginners in programming as part of the
-      <strong>UNESCO Hackathon</strong>. We believe media literacy is a key
-      skill for today’s digital world.
-    </p>
+    <!-- Learning Goals -->
+    <section class="about-learning card">
+      <i class="fa-solid fa-lightbulb about-icon"></i>
+      <h2>What You’ll Learn</h2>
+      <ul>
+        <li><i class="fa-solid fa-check-circle"></i> Spotting fake headlines</li>
+        <li><i class="fa-solid fa-check-circle"></i> Identifying reliable sources</li>
+        <li><i class="fa-solid fa-check-circle"></i> Recognizing bias & misinformation</li>
+        <li><i class="fa-solid fa-check-circle"></i> Practicing safe online sharing</li>
+      </ul>
+    </section>
+
+    <!-- Team Section -->
+    <section class="about-team card">
+      <i class="fa-solid fa-users about-icon"></i>
+      <h2>Our Team</h2>
+      <p>
+        This project was proudly built by beginner programmers as part of the 
+        <strong>UNESCO Hackathon</strong>. Together, we believe media literacy is 
+        essential for a safe, informed, and inclusive digital future 🌍✨.
+      </p>
+    </section>
   </main>
 
+  <!-- Footer -->
   <footer>
-    <p>© 2025 Media Literacy Quiz | Made with ❤️ at UNESCO Hackathon</p>
+    <p>© 2025 Media Literacy Quiz | UNESCO Hackathon 2025</p>
   </footer>
+
+  <style>
+    /* Hero Section */
+    .hero-about {
+      background: linear-gradient(135deg, rgb(141, 50, 207), #3b82f6);
+      color: white;
+      text-align: center;
+      padding: 3rem 1rem;
+      border-radius: 0 0 2rem 2rem;
+    }
+    .hero-about h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .hero-about p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+    }
+
+    /* Container */
+    .about-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      padding: 3rem 2rem;
+    }
+
+    /* Card Style */
+    .card {
+      background: rgb(42, 40, 40);
+      padding: 2rem;
+      border-radius: 1.5rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-align: center;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+
+    .about-icon {
+      font-size: 2.5rem;
+      color: #3b82f6;
+      margin-bottom: 1rem;
+    }
+
+    .about-learning ul {
+      list-style: none;
+      padding: 0;
+    }
+    .about-learning li {
+      margin: 0.5rem 0;
+      font-size: 1rem;
+    }
+    .about-learning i {
+      color: #16a34a;
+      margin-right: 0.5rem;
+    }
+  </style>
 </body>
 </html>
