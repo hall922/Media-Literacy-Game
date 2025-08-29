@@ -1,32 +1,102 @@
 [
   {
-    "question": "Chocolate cures COVID-19",
-    "answer": "fake",
-    "explanation": "This is false. No scientific research supports chocolate as a cure for COVID-19."
-  },
-  {
-    "question": "NASA confirms water on the Moon",
+    "question": "UNESCO declared April 23 as World Book Day.",
     "answer": "real",
-    "explanation": "True. NASA officially confirmed the presence of water molecules on the Moon in 2020."
+    "explanation": "True. UNESCO established World Book and Copyright Day to promote reading, publishing, and intellectual property protection."
   },
   {
-    "question": "Aliens secretly run Facebook",
+    "question": "Drinking 8 glasses of water daily guarantees protection from all illnesses.",
     "answer": "fake",
-    "explanation": "This is a conspiracy theory with no evidence or credible sources."
+    "explanation": "False. While hydration is important, no medical evidence proves it prevents all illnesses."
   },
   {
-    "question": "Teen builds a robot from recycled parts",
-    "answer": "real",
-    "explanation": "True. A real story covered in local and international media about innovation by young inventors."
-  },
-  {
-    "question": "Drinking bleach can cure diseases",
+    "question": "The Great Wall of China is visible from space with the naked eye.",
     "answer": "fake",
-    "explanation": "Dangerous misinformation. Bleach is toxic and harmful if consumed."
+    "explanation": "This is a myth. Astronauts confirm the Great Wall is not easily visible without aid from space."
   },
   {
-    "question": "World’s largest solar farm built in India",
+    "question": "UNESCO added Ethiopian Meskel Festival to the Intangible Cultural Heritage list.",
     "answer": "real",
-    "explanation": "Verified news. India built one of the world's largest solar farms to boost renewable energy."
+    "explanation": "True. In 2013, UNESCO inscribed the Meskel festival as part of humanity’s intangible cultural heritage."
+  },
+  {
+    "question": "Climate change is caused only by natural cycles, not human activity.",
+    "answer": "fake",
+    "explanation": "Scientific consensus shows human activities, especially burning fossil fuels, are the main driver of current climate change."
+  },
+  {
+    "question": "Malala Yousafzai is the youngest Nobel Peace Prize laureate.",
+    "answer": "real",
+    "explanation": "True. Malala received the Nobel Peace Prize in 2014 at 17 for her work advocating for girls’ education."
+  },
+  {
+    "question": "5G mobile networks spread COVID-19.",
+    "answer": "fake",
+    "explanation": "Misinformation. Viruses cannot travel on radio waves or mobile networks."
+  },
+  {
+    "question": "UNESCO recognizes Lake Turkana National Parks in Kenya as a World Heritage Site.",
+    "answer": "real",
+    "explanation": "True. Lake Turkana National Parks were inscribed in 1997 for their natural and fossil significance."
+  },
+  {
+    "question": "Eating garlic prevents coronavirus infection.",
+    "answer": "fake",
+    "explanation": "False. Garlic is healthy but there is no evidence it prevents COVID-19."
+  },
+  {
+    "question": "The Pyramids of Giza are the only surviving Wonder of the Ancient World.",
+    "answer": "real",
+    "explanation": "True. They are the only one of the Seven Ancient Wonders still standing today."
+  },
+  {
+    "question": "Vaccines contain microchips used for tracking people.",
+    "answer": "fake",
+    "explanation": "False. Vaccines are medically approved to protect health; this is a conspiracy theory."
+  },
+  {
+    "question": "UNESCO headquarters is in Paris, France.",
+    "answer": "real",
+    "explanation": "True. UNESCO has been headquartered in Paris since its founding in 1945."
+  },
+  {
+    "question": "Drinking seawater hydrates the human body.",
+    "answer": "fake",
+    "explanation": "False. Seawater dehydrates the body due to high salt content."
+  },
+  {
+    "question": "Nelson Mandela was the first democratically elected president of South Africa.",
+    "answer": "real",
+    "explanation": "True. Mandela was elected in 1994 after the end of apartheid."
+  },
+  {
+    "question": "UNESCO World Heritage Sites are only natural landscapes.",
+    "answer": "fake",
+    "explanation": "False. They include cultural, natural, and mixed heritage sites."
+  },
+  {
+    "question": "Marie Curie was the first woman to win a Nobel Prize.",
+    "answer": "real",
+    "explanation": "True. She won in 1903 for Physics and again in 1911 for Chemistry."
+  },
+  {
+    "question": "The Amazon rainforest produces 20% of the world’s oxygen.",
+    "answer": "fake",
+    "explanation": "This is an exaggeration. The Amazon produces oxygen, but most oxygen comes from oceans."
+  },
+  {
+    "question": "The Taj Mahal in India is a UNESCO World Heritage Site.",
+    "answer": "real",
+    "explanation": "True. It was inscribed as a World Heritage Site in 1983 for its cultural significance."
+  },
+  {
+    "question": "Human blood is always blue before it touches oxygen.",
+    "answer": "fake",
+    "explanation": "False. Human blood is always red; the blue appearance of veins is an optical illusion."
+  },
+  {
+    "question": "UNESCO designates Global Geoparks to promote sustainable development.",
+    "answer": "real",
+    "explanation": "True. Global Geoparks use geological heritage to support education, conservation, and sustainable development."
   }
 ]
