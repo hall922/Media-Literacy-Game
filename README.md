@@ -22,7 +22,7 @@ In today’s digital world, it’s easy to encounter misinformation. The **Media
 - Practicing safe online sharing  
 
 This project was created for the **UNESCO Hackathon 2025**, combining educational value with a sleek, futuristic interface by:-
-- Haleluya Samuel HaileGiorgis
+- Haleluya Samuel Hailegiorgis
 - Medhanit Gezu Hunde
 - Mistiremariam Getahun Girma
 
