@@ -1,185 +1,187 @@
+/* ---------- GLOBAL STYLES ---------- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
 body {
-  font-family: Arial, sans-serif;
+  font-family: "Poppins", sans-serif;
   text-align: center;
-  background: #f4f8fb;
+  background: radial-gradient(circle at top, #0f2027, #203a43, #2c5364);
+  color: #f4f8fb;
   margin: 0;
   padding: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Neon glow animation */
+@keyframes neon-glow {
+  0% { text-shadow: 0 0 5px #00f7ff, 0 0 10px #00f7ff, 0 0 20px #00f7ff; }
+  50% { text-shadow: 0 0 10px #6a11cb, 0 0 20px #2575fc, 0 0 30px #2575fc; }
+  100% { text-shadow: 0 0 5px #00f7ff, 0 0 10px #00f7ff, 0 0 20px #00f7ff; }
 }
 
 /* ---------- NAVBAR ---------- */
 .navbar {
-  background-color: rgb(48, 24, 72); /* darker purple */
-  padding: 15px 30px;
+  background: rgba(20, 20, 35, 0.8);
+  backdrop-filter: blur(8px);
+  padding: 18px 40px;
   display: flex;
-  justify-content: space-between; /* logo left, nav right */
+  justify-content: space-between;
   align-items: center;
+  border-bottom: 1px solid rgba(255,255,255,0.15);
 }
 
 .logo {
-  color: #f5f0fa; 
-  font-size: 20px;
-  font-weight: bold;
+  color: #fff;
+  font-size: 22px;
+  font-weight: 700;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
+  animation: neon-glow 2s infinite alternate;
 }
 
 .nav-links {
   display: flex;
-  flex: 1; /* take available space */
-  justify-content: flex-end; /* push links to right side */
-  gap: 40px; /* evenly spaced apart */
+  gap: 30px;
   margin: 0;
   padding: 0;
-  text-decoration: none;
 }
 
 nav a {
-  color: white; /* Set link color to white */
+  color: #eee;
+  font-weight: 500;
   text-decoration: none;
+  transition: color 0.3s ease;
 }
 
 nav a:hover {
-  color: rgb(200, 170, 230);
-  text-decoration: none;
-}
-
-nav ul li {
-  display: inline;
-  margin: 15px;
+  color: #00f7ff;
 }
 
 nav ul li a.active {
-  background-color: white;
-  color: rgb(200, 170, 230);
-  padding: 6px 10px;
-  border-radius: 6px;
+  background: linear-gradient(90deg, #6a11cb, #2575fc);
+  color: white;
+  padding: 6px 14px;
+  border-radius: 30px;
+  font-weight: 600;
+  box-shadow: 0 0 10px rgba(106,17,203,0.6);
 }
 
 /* ---------- PROGRESS BAR ---------- */
 .progress-container {
   width: 100%;
-  background: #ddd;
-  height: 20px;
-  border-radius: 10px;
-  margin: 20px auto;
-  max-width: 600px;
+  height: 22px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 50px;
+  margin: 25px auto;
+  max-width: 650px;
   overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.2);
 }
 
 .progress-bar {
   height: 100%;
   width: 0%;
-  background: linear-gradient(90deg, #6a11cb, #2575fc); /* purple-blue gradient */
-  border-radius: 10px;
-  transition: width 0.4s ease-in-out;
+  background: linear-gradient(90deg, #00f7ff, #6a11cb, #2575fc);
+  border-radius: 50px;
+  transition: width 0.5s ease-in-out;
   position: relative;
+  box-shadow: 0 0 15px rgba(0,247,255,0.7);
 }
 
 #progress-text {
   position: absolute;
   width: 100%;
   text-align: center;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: bold;
-  color: white;
-  line-height: 20px;
+  color: #fff;
+  line-height: 22px;
 }
 
 /* ---------- QUIZ BOX ---------- */
 #quiz-box {
-  background: #fff;
-  padding: 25px;
-  margin: 40px auto;
-  max-width: 600px;
-  border-radius: 12px;
-  box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(15px);
+  padding: 35px;
+  margin: 50px auto;
+  max-width: 700px;
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+  animation: fadeIn 1s ease;
 }
 
 #quiz-box h2 {
-  font-size: 18px;
-  color: #34495e;
-  margin-bottom: 15px;
-}
-
-.headline {
-  font-size: 20px;
-  font-weight: bold;
-  color: #2c3e50;
-  margin: 20px 0;
-  font-style: italic;
+  font-size: 22px;
+  color: #fff;
+  margin-bottom: 20px;
+  text-shadow: 0 0 8px rgba(0,247,255,0.8);
 }
 
 /* ---------- ANSWER BUTTONS ---------- */
-.buttons button {
+.option-btn {
   display: block;
   width: 100%;
-  margin: 12px 0;
-  padding: 15px;
+  margin: 14px 0;
+  padding: 16px;
   font-size: 18px;
-  font-weight: bold;
+  font-weight: 600;
   cursor: pointer;
   border: none;
-  border-radius: 8px;
-  transition: background-color 0.3s ease, transform 0.2s;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #1d2671, #c33764);
+  color: #fff;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
 }
 
-.buttons button:first-child {
-  background: #27ae60;
-  color: white;
-}
-.buttons button:first-child:hover {
-  background: #219150;
-  transform: scale(1.03);
-}
-
-.buttons button:last-child {
-  background: #e74c3c;
-  color: white;
-}
-.buttons button:last-child:hover {
-  background: #c0392b;
-  transform: scale(1.03);
+.option-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(0,247,255,0.6);
+  background: linear-gradient(135deg, #00f7ff, #6a11cb);
 }
 
 /* ---------- FEEDBACK ---------- */
-#feedback {
+#explanation {
   margin-top: 20px;
-  padding: 15px;
-  border-radius: 8px;
-  background: #f8f9fa;
-  border-left: 4px solid #f1c40f;
+  padding: 18px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.08);
+  border-left: 4px solid #00f7ff;
+  font-size: 16px;
+  color: #f1f1f1;
   text-align: left;
-  font-size: 15px;
-  color: #2c3e50;
-}
-
-#feedback strong {
-  font-weight: bold;
-}
-
-#feedback small {
-  display: block;
-  margin-top: 8px;
-  color: #7f8c8d;
-  font-size: 13px;
+  animation: fadeIn 0.5s ease;
 }
 
 /* ---------- NEXT BUTTON ---------- */
-#next-btn {
-  display: none;
-  margin-top: 20px;
-  padding: 12px 25px;
+#next-btn, #retake-btn {
+  margin-top: 25px;
+  padding: 14px 28px;
   font-size: 18px;
-  background: #3498db;
+  font-weight: 600;
+  background: linear-gradient(90deg, #6a11cb, #2575fc);
   color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: 12px;
   cursor: pointer;
-  transition: background 0.3s ease, transform 0.2s;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 20px rgba(106,17,203,0.5);
+  display: none;
 }
 
-#next-btn:hover {
-  background: #2980b9;
-  transform: scale(1.05);
+#next-btn:hover, #retake-btn:hover {
+  background: linear-gradient(90deg, #00f7ff, #6a11cb);
+  transform: scale(1.07);
+  box-shadow: 0 0 20px rgba(0,247,255,0.7);
+}
+
+/* ---------- ANIMATIONS ---------- */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0); }
 }

@@ -2,53 +2,252 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  />
   <title>Media Literacy Quiz</title>
-  <link rel="stylesheet" href="style.css"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <!-- Metadata -->
+  <meta name="description" content="A fun media literacy quiz to spot reliable news from fake news." />
+  <meta name="theme-color" content="#0f172a" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css" />
+  <link
+    rel="preconnect"
+    href="https://cdnjs.cloudflare.com"
+    crossorigin
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    integrity="sha512-Z8Wwq8lVYl8+ZK3g8kA9jz8k9f0Eo2C2Qd6lqGkqP7rB5m9x1oFQmQ3x2H3mUeYswGm5r5kK0p0lG6xsH2y0yA=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+
+  <!-- Fallback styles if main CSS fails -->
+  <style>
+    .visually-hidden{position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap;}
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;margin:0;background:#0b1020;color:#e5e7eb;}
+    .navbar{display:flex;align-items:center;justify-content:space-between;padding:12px 20px;background:#0f172a;position:sticky;top:0;z-index:10}
+    .navbar .logo{font-weight:700;letter-spacing:.2px}
+    .nav-links{display:flex;gap:14px;list-style:none;margin:0;padding:0}
+    .nav-links a{color:#e5e7eb;text-decoration:none;padding:8px 10px;border-radius:10px}
+    .nav-links a.active,.nav-links a:focus,.nav-links a:hover{background:#1f2937}
+    .progress-container{height:12px;background:#111827;margin:16px 20px;border-radius:999px;overflow:hidden}
+    .progress-bar{height:100%;width:0;background:#22c55e;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;box-sizing:border-box;transition:width .25s ease}
+    .container{max-width:860px;margin:20px auto;padding:16px}
+    #quiz-box{background:#0f172a;border:1px solid #1f2937;border-radius:16px;padding:22px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+    #question{margin-top:0;line-height:1.3}
+    .media-wrap{display:flex;align-items:center;justify-content:center;margin:12px 0}
+    .buttons{display:grid;grid-template-columns:repeat(2,minmax(160px,1fr));gap:12px;margin-top:10px}
+    .buttons button{padding:14px 16px;font-size:1rem;border:0;border-radius:12px;cursor:pointer;background:#1f2937;color:#e5e7eb}
+    .buttons button:hover,.buttons button:focus{outline:2px solid #334155}
+    .buttons button[data-type="real"]{background:#07391c}
+    .buttons button[data-type="fake"]{background:#3a0b11}
+    #feedback{margin-top:14px;padding:12px;border-radius:12px;display:none}
+    #feedback.correct{display:block;background:#052e1a;border:1px solid #14532d}
+    #feedback.incorrect{display:block;background:#3b0a10;border:1px solid #7f1d1d}
+    #score,#q-counter{margin:10px 0 0 0;font-weight:600;display:inline-block}
+    .toolbar{display:flex;gap:10px;align-items:center;justify-content:space-between;margin-top:14px;flex-wrap:wrap}
+    .left-tools,.right-tools{display:flex;gap:10px;align-items:center}
+    #next-btn,#restart-btn{padding:10px 14px;border-radius:10px;border:1px solid #374151;background:#111827;color:#e5e7eb;cursor:pointer}
+    #next-btn[hidden]{display:none}
+    .helper{font-size:.9rem;color:#9ca3af}
+    footer{max-width:860px;margin:30px auto 40px;padding:0 16px;color:#9ca3af;font-size:.9rem}
+    kbd{background:#111827;border:1px solid #374151;border-bottom-width:2px;border-radius:6px;padding:2px 6px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+  </style>
+
+  <!-- Prevent FOUC -->
+  <noscript>
+    <style>
+      .needs-js { display: none !important; }
+    </style>
+  </noscript>
 </head>
 <body>
- 
-  <!-- Navbar -->
-  <nav class="navbar">
-    <div class="logo"><i class="fa-solid fa-newspaper"></i> Media Literacy</div>
-    <ul class="nav-links">
-      <li><a href="index.html" class="active"><i class="fa-solid fa-house"></i> Home</a></li>
-      <li><a href="pages/about.html"><i class="fa-solid fa-circle-info"></i> About</a></li>
-      <li><a href="./pages/leaderboard.html"><i class="fa-solid fa-trophy"></i> Leaderboard</a></li>
-    </ul>
-  </nav>
+  <!-- Skip link for screen readers/keyboard users -->
+  <a href="#main" class="visually-hidden">Skip to quiz content</a>
 
-  <!-- Progress bar -->
-  <div class="progress-container">
-    <div class="progress-bar" id="progress-bar">
-      <span id="progress-text">0%</span>
+  <!-- Navbar -->
+  <header class="navbar" role="banner">
+    <div class="logo" aria-label="Media Literacy Home">
+      <i class="fa-solid fa-newspaper" aria-hidden="true"></i> Media Literacy
+    </div>
+    <nav aria-label="Primary" role="navigation">
+      <ul class="nav-links">
+        <li><a href="index.html" class="active"><i class="fa-solid fa-house" aria-hidden="true"></i> Home</a></li>
+        <li><a href="pages/about.html"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> About</a></li>
+        <li><a href="pages/leaderboard.html"><i class="fa-solid fa-trophy" aria-hidden="true"></i> Leaderboard</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Progress -->
+  <div class="progress-container" aria-hidden="false">
+    <div
+      class="progress-bar"
+      id="progress-bar"
+      role="progressbar"
+      aria-label="Quiz progress"
+      aria-valuemin="0"
+      aria-valuemax="100"
+      aria-valuenow="0"
+      style="width:0%"
+    >
+      <span id="progress-text" class="visually-hidden">0% complete</span>
     </div>
   </div>
 
-  <!-- Quiz container -->
-  <div class="container">
-    <div id="quiz-box">
-      <h2 id="question">Loading question...</h2>
+  <!-- Main content -->
+  <main id="main" class="container" role="main">
+    <section id="quiz-box" aria-live="polite" aria-atomic="true">
+      <div class="toolbar">
+        <div class="left-tools">
+          <span id="q-counter" aria-live="polite">Question 1</span>
+          <span id="score" aria-live="polite">Score: 0</span>
+        </div>
+        <div class="right-tools helper">
+          Shortcuts:
+          <kbd>R</kbd> = Reliable,
+          <kbd>F</kbd> = Fake,
+          <kbd>Enter</kbd> = Next
+        </div>
+      </div>
+
+      <h1 id="question" tabindex="-1">Loading question…</h1>
 
       <!-- Mascot / Image -->
-      <img src="images/home.jpg" alt="Detective Pikachu!" style="width:100px; margin: 15px auto; display:block;">
+      <div class="media-wrap">
+        <img
+          id="mascot"
+          src="images/home.jpg"
+          alt="Friendly media literacy mascot"
+          width="120"
+          height="120"
+          loading="eager"
+          decoding="async"
+          style="border-radius: 14px; object-fit: cover;"
+        />
+      </div>
 
       <!-- Answer buttons -->
       <div class="buttons">
-        <button onclick="checkAnswer('real')">✔️ Reliable</button>
-        <button onclick="checkAnswer('fake')">✖️ Fake News</button>
+        <button id="btn-real" data-type="real" aria-label="Mark as reliable" onclick="checkAnswer('real')">
+          ✔️ Reliable
+        </button>
+        <button id="btn-fake" data-type="fake" aria-label="Mark as fake" onclick="checkAnswer('fake')">
+          ✖️ Fake News
+        </button>
       </div>
 
       <!-- Feedback -->
-      <div id="feedback"></div>
-      <p id="score">Score: 0</p>
+      <div id="feedback" role="status" aria-live="polite"></div>
 
-      <!-- Hidden Next Button (fallback if auto-next fails) -->
-      <button id="next-btn" onclick="nextQuestion()" style="display:none; margin-top: 15px;">Next Question</button>
-    </div>
-  </div>
+      <!-- Controls -->
+      <div class="toolbar">
+        <div class="left-tools">
+          <button id="next-btn" onclick="nextQuestion()" hidden>
+            Next Question <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+          </button>
+        </div>
+        <div class="right-tools">
+          <!-- Non-breaking: your script can hook into these IDs if needed -->
+          <button id="restart-btn" type="button" data-action="restart" style="display:none">
+            Restart <i class="fa-solid fa-rotate-right" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
 
-  <script src="script.js"></script>
+      <!-- Accessibility helpers -->
+      <p class="helper" id="instructions">
+        Read the statement and decide whether it’s reliable or fake. You’ll get an explanation after each answer.
+      </p>
+    </section>
+  </main>
+
+  <footer aria-label="Footer">
+    <p>
+      Built for the UNESCO Hackathon. Tip: Use keyboard shortcuts for speed!
+    </p>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    // Progressive enhancement: keyboard shortcuts + safe focus + progress text
+    (function () {
+      const btnReal = document.getElementById('btn-real');
+      const btnFake = document.getElementById('btn-fake');
+      const nextBtn = document.getElementById('next-btn');
+      const qEl = document.getElementById('question');
+      const progressBar = document.getElementById('progress-bar');
+      const progressText = document.getElementById('progress-text');
+
+      // Expose small helpers your script.js can optionally use
+      window.__ml_helpers__ = {
+        updateProgress(percent) {
+          const p = Math.max(0, Math.min(100, Number(percent) || 0));
+          progressBar.style.width = p + '%';
+          progressBar.setAttribute('aria-valuenow', String(p));
+          progressText.textContent = p + '% complete';
+        },
+        showNextButton(show = true) {
+          if (show) nextBtn.removeAttribute('hidden');
+          else nextBtn.setAttribute('hidden', '');
+        },
+        focusQuestion() {
+          qEl.focus({ preventScroll: false });
+        },
+        disableAnswers(disabled = true) {
+          btnReal.disabled = disabled;
+          btnFake.disabled = disabled;
+        }
+      };
+
+      // Keyboard shortcuts: R, F, Enter
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'r' || e.key === 'R') {
+          e.preventDefault();
+          if (!btnReal.disabled && typeof window.checkAnswer === 'function') {
+            window.checkAnswer('real');
+          }
+        } else if (e.key === 'f' || e.key === 'F') {
+          e.preventDefault();
+          if (!btnFake.disabled && typeof window.checkAnswer === 'function') {
+            window.checkAnswer('fake');
+          }
+        } else if (e.key === 'Enter') {
+          // Only allow Enter to advance when next is visible
+          if (!nextBtn.hasAttribute('hidden')) {
+            e.preventDefault();
+            if (typeof window.nextQuestion === 'function') window.nextQuestion();
+          }
+        }
+      });
+
+      // Improve focus visibility when question changes (script.js can call __ml_helpers__.focusQuestion())
+      qEl.addEventListener('DOMNodeInserted', () => {
+        qEl.setAttribute('tabindex', '-1');
+      });
+
+      // Ensure the mascot image doesn’t collapse layout on slow loads
+      const mascot = document.getElementById('mascot');
+      mascot.addEventListener('error', () => {
+        mascot.alt = 'Media literacy';
+      });
+    })();
+  </script>
+
+  <!-- Your main logic (kept separate) -->
+  <script src="script.js" defer></script>
+
+  <!-- Noscript message -->
+  <noscript>
+    <p style="padding:1rem;color:#fff;background:#7f1d1d;margin:1rem;border-radius:10px;">
+      JavaScript is required to play the quiz. Please enable it and reload.
+    </p>
+  </noscript>
 </body>
 </html>
