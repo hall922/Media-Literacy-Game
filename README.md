@@ -10,14 +10,7 @@ A **fun and interactive quiz** designed to help students and young audiences ide
 
 - [About](#about)  
 - [Features](#features)  
-- [Demo](#demo)  
-- [Installation](#installation)  
-- [Usage](#usage)  
-- [Technologies](#technologies)  
-- [Contributing](#contributing)  
-- [License](#license)  
 
----
 
 ## About
 
