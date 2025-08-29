@@ -2,6 +2,7 @@
 let questions = [];
 let currentIndex = 0;
 let score = 0;
+let playerName = "";
 
 // DOM elements
 const questionEl = document.getElementById("question");
@@ -12,11 +13,17 @@ const btnFake = document.getElementById("btn-fake");
 const nextBtn = document.getElementById("next-btn");
 const scoreEl = document.getElementById("score");
 
+// Prompt for player name at start
+function askName() {
+  playerName = prompt("Enter your name to start the quiz:") || "Player";
+}
+
 // Fetch questions.json dynamically
 fetch('data/questions.json')
   .then(res => res.json())
   .then(data => {
     questions = data;
+    askName();       // <-- Prompt user for name here
     loadQuestion();
   })
   .catch(err => {
@@ -83,6 +90,12 @@ function nextQuestion() {
 
 // End of quiz
 function endQuiz() {
+  // Save score to leaderboard in localStorage
+  const leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || [];
+  leaderboard.push({ name: playerName, score: score });
+  localStorage.setItem("leaderboard", JSON.stringify(leaderboard));
+
+  // Show end message
   questionEl.textContent = "🎉 Quiz Finished!";
   feedbackEl.className = "correct";
   feedbackEl.innerHTML = `Your final score is ${score}/${questions.length}. Check out the <a href="pages/leaderboard.html">Leaderboard</a>!`;
