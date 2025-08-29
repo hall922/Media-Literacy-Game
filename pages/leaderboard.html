@@ -7,65 +7,111 @@
   <link rel="stylesheet" href="../style.css"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
   <style>
-    
+    body {
+      background: #0b1020;
+      color: #e5e7eb;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 0 20px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(90deg, #6a11cb, #2575fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
     #leaderboard-list {
       list-style: none;
       padding: 0;
-      max-width: 500px;
-      margin: 20px auto;
+      margin: 30px 0;
     }
 
     #leaderboard-list li {
-      background: #fff;
+      background: linear-gradient(135deg, #1f2937, #111827);
       margin: 12px 0;
-      padding: 15px 20px;
-      border-radius: 10px;
-      box-shadow: 0px 4px 10px rgba(0,0,0,0.08);
-      font-size: 18px;
-      font-weight: 500;
+      padding: 18px 25px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+      font-size: 1.1rem;
+      font-weight: 600;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      transition: transform 0.2s ease;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
     }
 
     #leaderboard-list li:hover {
-      transform: scale(1.02);
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.5);
     }
 
-    
+    #leaderboard-list li span {
+      font-weight: 700;
+      color: #8529e2;
+    }
+
     .gold { color: #f1c40f; }
     .silver { color: #bdc3c7; }
     .bronze { color: #e67e22; }
 
+    .btn-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 25px;
+    }
 
     .btn {
-      margin: 10px;
-      padding: 12px 25px;
+      padding: 14px 28px;
       font-size: 16px;
       border: none;
-      border-radius: 8px;
+      border-radius: 12px;
       cursor: pointer;
-      transition: background-color 0.3s ease;
+      transition: background 0.3s ease, transform 0.2s ease;
+      font-weight: 600;
       color: white;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
     #back-btn {
-      background: #3498db;
+      background: rgb(136, 45, 201);
     }
     #back-btn:hover {
-      background: #2980b9;
+      background: #7f28b9;
+      transform: scale(1.05);
     }
 
     #play-again-btn {
-      background: #27ae60;
+      background: #2453cb;
     }
     #play-again-btn:hover {
-      background: #219150;
+      background: #1029c9;
+      transform: scale(1.05);
+    }
+
+    footer {
+      margin-top: 50px;
+      padding: 20px;
+      font-size: 0.9rem;
+      color: #9ca3af;
     }
   </style>
 </head>
 <body>
+  <!-- Navbar -->
   <nav class="navbar">
     <div class="logo"><i class="fa-solid fa-newspaper"></i> Media Literacy</div>
     <ul class="nav-links">
@@ -79,8 +125,7 @@
     <h1>🏆 Leaderboard</h1>
     <ol id="leaderboard-list"></ol>
 
-  
-    <div>
+    <div class="btn-container">
       <a href="../index.html">
         <button class="btn" id="back-btn"><i class="fa-solid fa-arrow-left"></i> Back to Quiz</button>
       </a>
@@ -88,40 +133,40 @@
     </div>
   </div>
 
-  <!-- Script for Leaderboard -->
+  <footer>
+    © 2025 Media Literacy Quiz | Built for UNESCO Hackathon
+  </footer>
+
   <script>
-    // Load leaderboard data from localStorage
+    // Load leaderboard data
     let leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || [];
 
-    // Sort by highest score
     leaderboard.sort((a, b) => b.score - a.score);
 
-    // Display leaderboard
-    let list = document.getElementById("leaderboard-list");
+    const list = document.getElementById("leaderboard-list");
     if (leaderboard.length === 0) {
-      let empty = document.createElement("p");
+      const empty = document.createElement("p");
       empty.innerText = "No scores yet. Play the quiz to appear here!";
       list.appendChild(empty);
     } else {
       leaderboard.forEach((player, index) => {
-        let item = document.createElement("li");
+        const item = document.createElement("li");
 
-        // Add medals for top 3
         let medal = "";
-        if (index === 0) medal = '<i class="fa-solid fa-medal gold"></i> ';
-        else if (index === 1) medal = '<i class="fa-solid fa-medal silver"></i> ';
-        else if (index === 2) medal = '<i class="fa-solid fa-medal bronze"></i> ';
+        if(index === 0) medal = '<i class="fa-solid fa-medal gold"></i> ';
+        else if(index === 1) medal = '<i class="fa-solid fa-medal silver"></i> ';
+        else if(index === 2) medal = '<i class="fa-solid fa-medal bronze"></i> ';
 
         item.innerHTML = `${medal}${player.name} <span>${player.score} pts</span>`;
         list.appendChild(item);
       });
     }
 
-    // Reset quiz and play again
+    // Play again button
     document.getElementById("play-again-btn").addEventListener("click", () => {
-      localStorage.removeItem("currentScore");   // reset score
-      localStorage.removeItem("currentQuestion"); // reset question index
-      window.location.href = "../index.html";    // restart quiz
+      localStorage.removeItem("currentScore");
+      localStorage.removeItem("currentQuestion");
+      window.location.href = "../index.html";
     });
   </script>
 </body>
