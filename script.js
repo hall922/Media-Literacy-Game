@@ -74,12 +74,12 @@ function checkAnswer(selected) {
 
   scoreEl.textContent = `Score: ${score}`;
 
-  // Auto-advance after 2 seconds
+  // Auto-advance after 4.5 seconds
   setTimeout(() => {
     if (currentIndex < questions.length) {
       nextQuestion();
     }
-  }, 2000);
+  }, 5000);
 }
 
 // Go to next question

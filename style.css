@@ -67,6 +67,14 @@ nav ul li a.active {
   font-weight: 600;
   box-shadow: 0 0 10px rgba(106,17,203,0.6);
 }
+.leaderboard-header {
+  position: sticky;
+  top: 0;
+  background: white;
+  z-index: 100;
+  padding: 10px;
+  font-weight: bold;
+}
 
 /* ---------- PROGRESS BAR ---------- */
 .progress-container {
